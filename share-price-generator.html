@@ -4,52 +4,95 @@
 <script>
 window.onload = function () {
 
-var dps = []; // dataPoints
+var BlueSkyData = []; // BlueSky data points
+var RedSunData = []; // RedSun data points
+var GreenTreeData = []; // GreenTree data points
 var chart = new CanvasJS.Chart("chartContainer", {
 	title :{
-		text: "ABC Share Price"
+		text: "Share Prices"
 	},
 	axisY: {
 		includeZero: true
 	},      
 	data: [{
 		type: "line",
-		dataPoints: dps
-	}]
+		dataPoints: BlueSkyData,
+		name: "BlueSky",
+		showInLegend: true
+	},
+	{
+		type: "line",
+		dataPoints: RedSunData,
+		name: "RedSun",
+		showInLegend: true
+	},
+	{
+		type: "line",
+		dataPoints: GreenTreeData,
+		name: "GreenTree",
+		showInLegend: true
+	}
+]
 });
 
 var xVal = 0;
-var yVal = 50; 
-var updateInterval = 20;
-var dataLength = 200; // number of dataPoints visible at any point
+var BlueSkyyVal = 50;
+var RedSunyVal = 50;
+var GreenTreeyVal = 50;
+var updateInterval = 100;
+var dataLength = 0; // number of dataPoints visible at any point
+var increment = 0;
+var duration = 300;
+var myVar = 0;
 
 var updateChart = function (count) {
 
-	count = count || 1;
+	count = count || 1;	
 
 	for (var j = 0; j < count; j++) {
-		yVal = yVal +  Math.round(1.05 + Math.random() *(-1-1));
-		dps.push({
+		BlueSkyyVal = BlueSkyyVal +  Math.round(1.05 + Math.random() *(-1-1));
+		RedSunyVal = RedSunyVal +  Math.round(1.05 + Math.random() *(-1-1));
+		GreenTreeyVal = GreenTreeyVal +  Math.round(1.05 + Math.random() *(-1-1));
+		BlueSkyData.push({
 			x: xVal,
-			y: yVal
+			y: BlueSkyyVal
+		});
+		RedSunData.push({
+			x: xVal,
+			y: RedSunyVal
+		});
+		GreenTreeData.push({
+			x: xVal,
+			y: GreenTreeyVal
 		});
 		xVal++;
 	}
 
-	if (dps.length > dataLength) {
-		dps.shift();
-	}
+	//if (dps.length > dataLength) {
+	//	dps.shift();
+	//}
 
 	chart.render();
+
+	increment++;
+	if (increment == duration) {
+		myStopFunction(myVar);
+	}
 };
 
-updateChart(dataLength);
-setInterval(function(){updateChart()}, updateInterval);
+updateChart(dataLength); // call updateChart once with the initial dataLength as argument
+myVar = setInterval(function(){updateChart()}, updateInterval); // repetitively call updateChart with no argument (hence, count will be 1 at the start of the updateChart function)
 
 }
+
+function myStopFunction(myVar) {
+	clearInterval(myVar);
+}
+
 </script>
 </head>
 <body>
+
 <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
