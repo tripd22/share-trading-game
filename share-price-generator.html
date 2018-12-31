@@ -1,128 +1,135 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
 
 
 </head>
+
 <body>
 
-<p id="test"> </p>
-<p id="test2"> </p>
-<button type="button" onclick="buyFunction()">BUY</button>
-<button onclick="sellFunction()">SELL</button>
+    <p>Current Cash: $<div id="currentCashDiv">1000</div> </p>
+    <p>Current Holdings Value: $<div id="currentHoldingsVal">1000</div></p>
+    <p>BlueSky Shares Owned:<div id="BlueSkyOwned">0</div></p>
+    <p>BlueSkyValue: $<div id="BlueSkyVal">0</div></p>
 
-<script>
-window.onload = function () {
+    <button type="button" onclick="buyFunction()">BUY</button>
+    <button onclick="sellFunction()">SELL</button>
 
-document.getElementById("test").innerHTML = "1 ";
+    <script>
+	    var xVal = 0;
+        var BlueSkyyVal = 50;
+        var BlueSkySharesOwned = 0;
+        var RedSunyVal = 50;
+        var GreenTreeyVal = 50;
+        var updateInterval = 200;
+        var dataLength = 0; // number of dataPoints visible at any point
+        var increment = 0;
+        var duration = 60;
+        var myVar = 0;
+
+        var currentCash = 1000;
+
+        window.onload = function() {
+
+            var BlueSkyData = []; // BlueSky data points
+            var RedSunData = []; // RedSun data points
+            var GreenTreeData = []; // GreenTree data points
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Share Prices"
+                },
+                axisY: {
+                    includeZero: true
+                },
+                data: [{
+                        type: "line",
+                        dataPoints: BlueSkyData,
+                        name: "BlueSky",
+                        showInLegend: true
+                    },
+                    {
+                        type: "line",
+                        dataPoints: RedSunData,
+                        name: "RedSun",
+                        showInLegend: true
+                    },
+                    {
+                        type: "line",
+                        dataPoints: GreenTreeData,
+                        name: "GreenTree",
+                        showInLegend: true
+                    }
+                ]
+            });
+
+            var updateChart = function(count) {
+
+            	document.getElementById("currentHoldingsVal").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal);
+            	document.getElementById("BlueSkyOwned").innerHTML = BlueSkySharesOwned;
+            	document.getElementById("BlueSkyVal").innerHTML = BlueSkyyVal;
+
+                count = count || 1;
+
+                for (var j = 0; j < count; j++) {
+                    BlueSkyyVal = BlueSkyyVal + Math.round(1.05 + Math.random() * (-1 - 1));
+                    RedSunyVal = RedSunyVal + Math.round(1.05 + Math.random() * (-1 - 1));
+                    GreenTreeyVal = GreenTreeyVal + Math.round(1.05 + Math.random() * (-1 - 1));
+                    BlueSkyData.push({
+                        x: xVal,
+                        y: BlueSkyyVal
+                    });
+                    RedSunData.push({
+                        x: xVal,
+                        y: RedSunyVal
+                    });
+                    GreenTreeData.push({
+                        x: xVal,
+                        y: GreenTreeyVal
+                    });
+                    xVal++;
+                }
+
+                //if (dps.length > dataLength) {
+                //	dps.shift();
+                //}
+
+                chart.render();
+
+                increment++;
+                if (increment == duration) {
+                    myStopFunction(myVar);
+                }
+            };
+
+            updateChart(dataLength); // call updateChart once with the initial dataLength as argument
+            myVar = setInterval(function() {
+                updateChart()
+            }, updateInterval); // repetitively call updateChart with no argument (hence, count will be 1 at the start of the updateChart function
+
+        }
+
+        function buyFunction() {
+        	currentCash = currentCash - BlueSkyyVal;
+            document.getElementById("currentCashDiv").innerHTML = currentCash;
+            BlueSkySharesOwned++;
+        }
+
+        function myStopFunction(myVar) {
+            clearInterval(myVar);
+        }
+
+        var sellFunction = function() {
+            currentCash = currentCash + BlueSkyyVal;
+            document.getElementById("currentCashDiv").innerHTML = currentCash;
+            BlueSkySharesOwned--;
+        }
+    </script>
 
 
-document.getElementById("test").innerHTML = document.getElementById("test").innerHTML + " 2";
 
-var BlueSkyData = []; // BlueSky data points
-var RedSunData = []; // RedSun data points
-var GreenTreeData = []; // GreenTree data points
-var chart = new CanvasJS.Chart("chartContainer", {
-	title :{
-		text: "Share Prices"
-	},
-	axisY: {
-		includeZero: true
-	},      
-	data: [{
-		type: "line",
-		dataPoints: BlueSkyData,
-		name: "BlueSky",
-		showInLegend: true
-	},
-	{
-		type: "line",
-		dataPoints: RedSunData,
-		name: "RedSun",
-		showInLegend: true
-	},
-	{
-		type: "line",
-		dataPoints: GreenTreeData,
-		name: "GreenTree",
-		showInLegend: true
-	}
-]
-});
-
-var xVal = 0;
-var BlueSkyyVal = 50;
-var RedSunyVal = 50;
-var GreenTreeyVal = 50;
-var updateInterval = 100;
-var dataLength = 0; // number of dataPoints visible at any point
-var increment = 0;
-var duration = 30;
-var myVar = 0;
-
-//buyFunction();
-document.getElementById("test2").innerHTML = dataLength;
-
-var currentCash = 1000;
-
-var updateChart = function (count) {
-
-	count = count || 1;	
-
-	for (var j = 0; j < count; j++) {
-		BlueSkyyVal = BlueSkyyVal +  Math.round(1.05 + Math.random() *(-1-1));
-		RedSunyVal = RedSunyVal +  Math.round(1.05 + Math.random() *(-1-1));
-		GreenTreeyVal = GreenTreeyVal +  Math.round(1.05 + Math.random() *(-1-1));
-		BlueSkyData.push({
-			x: xVal,
-			y: BlueSkyyVal
-		});
-		RedSunData.push({
-			x: xVal,
-			y: RedSunyVal
-		});
-		GreenTreeData.push({
-			x: xVal,
-			y: GreenTreeyVal
-		});
-		xVal++;
-	}
-
-	//if (dps.length > dataLength) {
-	//	dps.shift();
-	//}
-	document.getElementById("test").innerHTML = document.getElementById("test").innerHTML + " 4";
-	chart.render();
-
-	increment++;
-	if (increment == duration) {
-		myStopFunction(myVar);
-	}
-};
-
-updateChart(dataLength); // call updateChart once with the initial dataLength as argument
-myVar = setInterval(function(){updateChart()}, updateInterval); // repetitively call updateChart with no argument (hence, count will be 1 at the start of the updateChart function)
-
-}
-
-function myStopFunction(myVar) {
-	clearInterval(myVar);
-}
-
-function buyFunction() {
-	//document.getElementById("test").innerHTML = "Bought";
-	document.getElementById("test2").innerHTML = dataLength;
-}
-
-var sellFunction = function() {
-	document.getElementById("test").innerHTML = "Sold";
-}
-
-</script>
-
-
-
-<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
+
 </html>
