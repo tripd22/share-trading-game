@@ -3,26 +3,19 @@
 
 <head>
 
-
 </head>
 
 <body>
 
-    <p>Current Cash: $<div id="currentCashDiv">1000</div> </p>
-    <p>Current Holdings Value: $<div id="currentHoldingsVal">1000</div></p>
-    <p>BlueSky Shares Owned:<div id="BlueSkyOwned">0</div></p>
-    <p>BlueSkyValue: $<div id="BlueSkyVal">0</div></p>
-
-    <button type="button" onclick="buyFunction()">BUY</button>
-    <button onclick="sellFunction()">SELL</button>
-
     <script>
-	    var xVal = 0;
+        var xVal = 0;
         var BlueSkyyVal = 50;
         var BlueSkySharesOwned = 0;
         var RedSunyVal = 50;
+        var RedSunSharesOwned = 0;
         var GreenTreeyVal = 50;
-        var updateInterval = 200;
+        var GreenTreeSharesOwned = 0;
+        var updateInterval = 400;
         var dataLength = 0; // number of dataPoints visible at any point
         var increment = 0;
         var duration = 60;
@@ -43,31 +36,30 @@
                     includeZero: true
                 },
                 data: [{
-                        type: "line",
-                        dataPoints: BlueSkyData,
-                        name: "BlueSky",
-                        showInLegend: true
-                    },
-                    {
-                        type: "line",
-                        dataPoints: RedSunData,
-                        name: "RedSun",
-                        showInLegend: true
-                    },
-                    {
-                        type: "line",
-                        dataPoints: GreenTreeData,
-                        name: "GreenTree",
-                        showInLegend: true
-                    }
-                ]
+                    type: "line",
+                    dataPoints: BlueSkyData,
+                    name: "BlueSky",
+                    showInLegend: true
+                }, {
+                    type: "line",
+                    dataPoints: RedSunData,
+                    name: "RedSun",
+                    showInLegend: true
+                }, {
+                    type: "line",
+                    dataPoints: GreenTreeData,
+                    name: "GreenTree",
+                    showInLegend: true
+                }]
             });
 
             var updateChart = function(count) {
 
-            	document.getElementById("currentHoldingsVal").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal);
-            	document.getElementById("BlueSkyOwned").innerHTML = BlueSkySharesOwned;
-            	document.getElementById("BlueSkyVal").innerHTML = BlueSkyyVal;
+                document.getElementById("overallValue").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal) + (RedSunSharesOwned * RedSunyVal) + (GreenTreeSharesOwned * GreenTreeyVal);
+                document.getElementById("numTotalShares").innerHTML = BlueSkySharesOwned + RedSunSharesOwned + GreenTreeSharesOwned;
+                document.getElementById("currentBVal").innerHTML = BlueSkyyVal;
+                document.getElementById("currentRVal").innerHTML = RedSunyVal;
+                document.getElementById("currentGVal").innerHTML = GreenTreeyVal;
 
                 count = count || 1;
 
@@ -109,27 +101,158 @@
 
         }
 
-        function buyFunction() {
-        	currentCash = currentCash - BlueSkyyVal;
+        function buyFunction(companyName) {
+            if (companyName == ("BlueSky")) {
+                currentCash = currentCash - BlueSkyyVal;
+                BlueSkySharesOwned++;
+                //document.getElementById("currentBVal").innerHTML = ;
+                document.getElementById("numBShares").innerHTML = BlueSkySharesOwned;
+                document.getElementById("valBShares").innerHTML = BlueSkySharesOwned * BlueSkyyVal;
+            } else if (companyName == ("RedSun")) {
+                currentCash = currentCash - RedSunyVal;
+                RedSunSharesOwned++;
+                document.getElementById("numRShares").innerHTML = RedSunSharesOwned;
+                document.getElementById("valRShares").innerHTML = RedSunSharesOwned * RedSunyVal;
+            } else if (companyName == ("GreenTree")) {
+                currentCash = currentCash - GreenTreeyVal;
+                GreenTreeSharesOwned++;
+                document.getElementById("numGShares").innerHTML = GreenTreeSharesOwned;
+                document.getElementById("valGShares").innerHTML = GreenTreeSharesOwned * GreenTreeyVal;
+            }
+
             document.getElementById("currentCashDiv").innerHTML = currentCash;
-            BlueSkySharesOwned++;
+            document.getElementById("overallValue").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal) + (RedSunSharesOwned * RedSunyVal) + (GreenTreeSharesOwned * GreenTreeyVal);
+            document.getElementById("numTotalShares").innerHTML = BlueSkySharesOwned + RedSunSharesOwned + GreenTreeSharesOwned;
+
         }
 
         function myStopFunction(myVar) {
             clearInterval(myVar);
         }
 
-        var sellFunction = function() {
-            currentCash = currentCash + BlueSkyyVal;
+        function sellFunction(companyName) {
+            if (companyName == ("BlueSky")) {
+                currentCash = currentCash + BlueSkyyVal;
+                BlueSkySharesOwned--;
+                document.getElementById("numBShares").innerHTML = BlueSkySharesOwned;
+                document.getElementById("valBShares").innerHTML = BlueSkySharesOwned * BlueSkyyVal;
+            } else if (companyName == ("RedSun")) {
+                currentCash = currentCash + RedSunyVal;
+                RedSunSharesOwned--;
+                document.getElementById("numRShares").innerHTML = RedSunSharesOwned;
+                document.getElementById("valRShares").innerHTML = RedSunSharesOwned * RedSunyVal;
+            } else if (companyName == ("GreenTree")) {
+                currentCash = currentCash + GreenTreeyVal;
+                GreenTreeSharesOwned--;
+                document.getElementById("numGShares").innerHTML = GreenTreeSharesOwned;
+                document.getElementById("valGShares").innerHTML = GreenTreeSharesOwned * GreenTreeyVal;
+            }
+
             document.getElementById("currentCashDiv").innerHTML = currentCash;
-            BlueSkySharesOwned--;
+            document.getElementById("overallValue").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal) + (RedSunSharesOwned * RedSunyVal) + (GreenTreeSharesOwned * GreenTreeyVal);
+            document.getElementById("numTotalShares").innerHTML = BlueSkySharesOwned + RedSunSharesOwned + GreenTreeSharesOwned;
         }
     </script>
 
-
-
     <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <div align="center">
+    </br>
+	    <button type="button" onclick="buyFunction('BlueSky')">Buy BlueSky</button>
+	    <button type="button" onclick="buyFunction('RedSun')">Buy RedSun</button>
+	    <button type="button" onclick="buyFunction('GreenTree')">Buy GreenTree</button>
+	    </br></br>
+	    <button type="button" onclick="sellFunction('BlueSky')">Sell BlueSky</button>
+	    <button type="button" onclick="sellFunction('RedSun')">Sell RedSun</button>
+	    <button type="button" onclick="sellFunction('GreenTree')">Sell GreenTree</button>
+    </div>
+
+    </br>
+
+    <div align="center">
+
+	    <style type="text/css">
+	        .tg {
+	            border-collapse: collapse;
+	            border-spacing: 0;
+	        }
+	        
+	        .tg td {
+	            font-family: Arial, sans-serif;
+	            font-size: 14px;
+	            padding: 10px 5px;
+	            border-style: solid;
+	            border-width: 1px;
+	            overflow: hidden;
+	            word-break: normal;
+	            border-color: black;
+	        }
+	        
+	        .tg th {
+	            font-family: Arial, sans-serif;
+	            font-size: 14px;
+	            font-weight: normal;
+	            padding: 10px 5px;
+	            border-style: solid;
+	            border-width: 1px;
+	            overflow: hidden;
+	            word-break: normal;
+	            border-color: black;
+	        }
+	        
+	        .tg .tg-1wig {
+	            font-weight: bold;
+	            text-align: left;
+	            vertical-align: top
+	        }
+	        
+	        .tg .tg-0lax {
+	            text-align: left;
+	            vertical-align: top
+	        }
+	    </style>
+	    <table class="tg">
+	        <tr>
+	            <th class="tg-0lax"></th>
+	            <th class="tg-0lax">Current Value</th>
+	            <th class="tg-0lax">Number of Shares</th>
+	            <th class="tg-0lax">Value of Holding</th>
+	        </tr>
+	        <tr>
+	            <td class="tg-0lax">BlueSky</td>
+	            <td class="tg-0lax" id="currentBVal">0</td>
+	            <td class="tg-0lax" id="numBShares">0</td>
+	            <td class="tg-0lax" id="valBShares">0</td>
+	        </tr>
+	        <tr>
+	            <td class="tg-0lax">RedSun</td>
+	            <td class="tg-0lax" id="currentRVal">0</td>
+	            <td class="tg-0lax" id="numRShares">0</td>
+	            <td class="tg-0lax" id="valRShares">0</td>
+	        </tr>
+	        <tr>
+	            <td class="tg-0lax">GreenTree</td>
+	            <td class="tg-0lax" id="currentGVal">0</td>
+	            <td class="tg-0lax" id="numGShares">0</td>
+	            <td class="tg-0lax" id="valGShares">0</td>
+	        </tr>
+	        <tr>
+	            <td class="tg-0lax">Cash</td>
+	            <td class="tg-0lax">---</td>
+	            <td class="tg-0lax">---</td>
+	            <td class="tg-0lax" id="currentCashDiv">1000</td>
+	        </tr>
+	        <tr>
+	            <td class="tg-1wig">Total</td>
+	            <td class="tg-0lax">---</td>
+	            <td class="tg-1wig" id="numTotalShares">0</td>
+	            <td class="tg-1wig" id="overallValue"></td>
+	        </tr>
+	    </table>
+	</div>
+
+
 </body>
 
 </html>
