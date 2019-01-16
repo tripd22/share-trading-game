@@ -9,11 +9,11 @@
 
     <script>
         var xVal = 0;
-        var BlueSkyyVal = 50;
+        var BlueSkyyVal = 30;
         var BlueSkySharesOwned = 0;
-        var RedSunyVal = 50;
+        var RedSunyVal = 30;
         var RedSunSharesOwned = 0;
-        var GreenTreeyVal = 50;
+        var GreenTreeyVal = 30;
         var GreenTreeSharesOwned = 0;
         var updateInterval = 400;
         var dataLength = 0; // number of dataPoints visible at any point
@@ -21,13 +21,14 @@
         var duration = 60;
         var myVar = 0;
 
-        var currentCash = 1000;
+        var currentCash = 500;
 
         window.onload = function() {
 
             var BlueSkyData = []; // BlueSky data points
             var RedSunData = []; // RedSun data points
             var GreenTreeData = []; // GreenTree data points
+            var EmptyData = []; // empty data set used for chart formatting
             var chart = new CanvasJS.Chart("chartContainer", {
                 title: {
                     text: "Share Prices"
@@ -50,8 +51,26 @@
                     dataPoints: GreenTreeData,
                     name: "GreenTree",
                     showInLegend: true
+                }, {
+                    type: "line",
+                    dataPoints: EmptyData,
+                    name: "EmptyData",
+                    showInLegend: false,
+                    color: "rgba(255,250,250,0)",
+                    gridColor: "rgba(255,250,250,0)" 
                 }]
             });
+
+
+            EmptyData.push({
+                        x: 5,
+                        y: 40
+                    });
+
+            EmptyData.push({
+                        x: 60,
+                        y: 5
+                    });
 
             var updateChart = function(count) {
 
@@ -69,15 +88,18 @@
                     GreenTreeyVal = GreenTreeyVal + Math.round(1.05 + Math.random() * (-1 - 1));
                     BlueSkyData.push({
                         x: xVal,
-                        y: BlueSkyyVal
+                        y: BlueSkyyVal,
+                        markerType: "none"
                     });
                     RedSunData.push({
                         x: xVal,
-                        y: RedSunyVal
+                        y: RedSunyVal,
+                        markerType: "none"
                     });
                     GreenTreeData.push({
                         x: xVal,
-                        y: GreenTreeyVal
+                        y: GreenTreeyVal,
+                        markerType: "none"
                     });
                     xVal++;
                 }
@@ -102,23 +124,43 @@
         }
 
         function buyFunction(companyName) {
+        	if (increment == duration) {
+        		document.getElementById("errorMessage").innerHTML = "The game has finished!";
+        		return;
+        	} else {
+        		document.getElementById("errorMessage").innerHTML = "";
+        	}
             if (companyName == ("BlueSky")) {
+            	if (!(currentCash >= BlueSkyyVal)) {
+            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy BlueSky";
+            		return;
+            	}
                 currentCash = currentCash - BlueSkyyVal;
                 BlueSkySharesOwned++;
                 //document.getElementById("currentBVal").innerHTML = ;
                 document.getElementById("numBShares").innerHTML = BlueSkySharesOwned;
                 document.getElementById("valBShares").innerHTML = BlueSkySharesOwned * BlueSkyyVal;
             } else if (companyName == ("RedSun")) {
+                if (!(currentCash >= RedSunyVal)) {
+            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy RedSun";
+            		return;
+            	}
                 currentCash = currentCash - RedSunyVal;
                 RedSunSharesOwned++;
                 document.getElementById("numRShares").innerHTML = RedSunSharesOwned;
                 document.getElementById("valRShares").innerHTML = RedSunSharesOwned * RedSunyVal;
             } else if (companyName == ("GreenTree")) {
+            	if (!(currentCash >= GreenTreeyVal)) {
+            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy GreenTree";
+            		return;
+            	}
                 currentCash = currentCash - GreenTreeyVal;
                 GreenTreeSharesOwned++;
                 document.getElementById("numGShares").innerHTML = GreenTreeSharesOwned;
                 document.getElementById("valGShares").innerHTML = GreenTreeSharesOwned * GreenTreeyVal;
             }
+
+            document.getElementById("errorMessage").innerHTML = "Share bought";
 
             document.getElementById("currentCashDiv").innerHTML = currentCash;
             document.getElementById("overallValue").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal) + (RedSunSharesOwned * RedSunyVal) + (GreenTreeSharesOwned * GreenTreeyVal);
@@ -131,22 +173,40 @@
         }
 
         function sellFunction(companyName) {
+        	if (increment == duration) {
+        		document.getElementById("errorMessage").innerHTML = "The game has finished!";
+        		return;
+        	}
             if (companyName == ("BlueSky")) {
+            	if (BlueSkySharesOwned == 0) {
+            		document.getElementById("errorMessage").innerHTML = "You have no BlueSky shares to sell";
+            		return;
+            	}
                 currentCash = currentCash + BlueSkyyVal;
                 BlueSkySharesOwned--;
                 document.getElementById("numBShares").innerHTML = BlueSkySharesOwned;
                 document.getElementById("valBShares").innerHTML = BlueSkySharesOwned * BlueSkyyVal;
             } else if (companyName == ("RedSun")) {
+                if (RedSunSharesOwned == 0) {
+            		document.getElementById("errorMessage").innerHTML = "You have no RedSun shares to sell";
+            		return;
+            	}
                 currentCash = currentCash + RedSunyVal;
                 RedSunSharesOwned--;
                 document.getElementById("numRShares").innerHTML = RedSunSharesOwned;
                 document.getElementById("valRShares").innerHTML = RedSunSharesOwned * RedSunyVal;
             } else if (companyName == ("GreenTree")) {
+            	if (GreenTreeSharesOwned == 0) {
+            		document.getElementById("errorMessage").innerHTML = "You have no GreenTree shares to sell";
+            		return;
+            	}
                 currentCash = currentCash + GreenTreeyVal;
                 GreenTreeSharesOwned--;
                 document.getElementById("numGShares").innerHTML = GreenTreeSharesOwned;
                 document.getElementById("valGShares").innerHTML = GreenTreeSharesOwned * GreenTreeyVal;
             }
+
+            document.getElementById("errorMessage").innerHTML = "Share sold";
 
             document.getElementById("currentCashDiv").innerHTML = currentCash;
             document.getElementById("overallValue").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal) + (RedSunSharesOwned * RedSunyVal) + (GreenTreeSharesOwned * GreenTreeyVal);
@@ -154,8 +214,15 @@
         }
     </script>
 
+    <div>
+    	<p>Welcome to the share trading game. Your job is to buy and sell the 3 companies below with the aim of making a profit. The share prices of the 3 companies will evolve over time - try to buy when the price is low, and sell when the price is high!
+    	</p>
+    </div>
+
     <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <div align="center"><p id="errorMessage">Status</p></div>
 
     <div align="center">
     </br>
@@ -241,7 +308,7 @@
 	            <td class="tg-0lax">Cash</td>
 	            <td class="tg-0lax">---</td>
 	            <td class="tg-0lax">---</td>
-	            <td class="tg-0lax" id="currentCashDiv">1000</td>
+	            <td class="tg-0lax" id="currentCashDiv">500</td>
 	        </tr>
 	        <tr>
 	            <td class="tg-1wig">Total</td>
