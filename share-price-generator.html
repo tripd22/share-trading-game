@@ -3,6 +3,13 @@
 
 <head>
 
+
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -31,7 +38,7 @@
             var EmptyData = []; // empty data set used for chart formatting
             var chart = new CanvasJS.Chart("chartContainer", {
                 title: {
-                    text: "Share Prices"
+                    text: null
                 },
                 axisY: {
                     includeZero: true
@@ -214,10 +221,15 @@
         }
     </script>
 
-    <div>
+    <div align="center">
+    	<h1>Share Trading</h1>
+
+    	<div style="width:800px;">
     	<p>Welcome to the share trading game. Your job is to buy and sell the 3 companies below with the aim of making a profit. The share prices of the 3 companies will evolve over time - try to buy when the price is low, and sell when the price is high!
     	</p>
     </div>
+    </div>
+
 
     <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -279,7 +291,7 @@
 	            vertical-align: top
 	        }
 	    </style>
-	    <table class="tg">
+	    <table class="table">
 	        <tr>
 	            <th class="tg-0lax"></th>
 	            <th class="tg-0lax">Current Value</th>
@@ -319,6 +331,9 @@
 	    </table>
 	</div>
 
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </body>
 
