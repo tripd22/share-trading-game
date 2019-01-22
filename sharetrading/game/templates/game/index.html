@@ -27,6 +27,7 @@
         var increment = 0;
         var duration = 60;
         var myVar = 0;
+        var numberOfTrades = 0;
 
         var currentCash = 500;
 
@@ -137,6 +138,7 @@
         	} else {
         		document.getElementById("errorMessage").innerHTML = "";
         	}
+
             if (companyName == ("BlueSky")) {
             	if (!(currentCash >= BlueSkyyVal)) {
             		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy BlueSky";
@@ -166,6 +168,11 @@
                 document.getElementById("numGShares").innerHTML = GreenTreeSharesOwned;
                 document.getElementById("valGShares").innerHTML = GreenTreeSharesOwned * GreenTreeyVal;
             }
+
+            // transaction cost adjustment
+            currentCash -= 1;
+            numberOfTrades += 1;
+            document.getElementById("numTrades").innerHTML = numberOfTrades;
 
             document.getElementById("errorMessage").innerHTML = "Share bought";
 
@@ -213,6 +220,11 @@
                 document.getElementById("valGShares").innerHTML = GreenTreeSharesOwned * GreenTreeyVal;
             }
 
+            // transaction cost adjustment
+            currentCash -= 1;
+            numberOfTrades += 1;
+            document.getElementById("numTrades").innerHTML = numberOfTrades;
+
             document.getElementById("errorMessage").innerHTML = "Share sold";
 
             document.getElementById("currentCashDiv").innerHTML = currentCash;
@@ -245,6 +257,10 @@
 	    <button type="button" onclick="sellFunction('BlueSky')">Sell BlueSky</button>
 	    <button type="button" onclick="sellFunction('RedSun')">Sell RedSun</button>
 	    <button type="button" onclick="sellFunction('GreenTree')">Sell GreenTree</button>
+    </div>
+
+    <div align="center">
+        <p id="numTrades">0</p>
     </div>
 
     </br>
