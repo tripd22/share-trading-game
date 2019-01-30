@@ -8,3 +8,10 @@ def index(request):
         'num': 2,
     }
     return HttpResponse(template.render(context, request))
+
+def bank(request):
+	template = loader.get_template('game/bank.html')
+	context = {
+		'num': 2,
+	}
+	return HttpResponse(template.render(context, request))

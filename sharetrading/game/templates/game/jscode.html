@@ -75,9 +75,11 @@
                 count = count || 1;
 
                 for (var j = 0; j < count; j++) {
+                    {% block priceEvolution %}
                     BlueSkyyVal = BlueSkyyVal + Math.round(1.05 + Math.random() * (-1 - 1));
                     RedSunyVal = RedSunyVal + Math.round(1.05 + Math.random() * (-1 - 1));
                     GreenTreeyVal = GreenTreeyVal + Math.round(1.05 + Math.random() * (-1 - 1));
+                    {% endblock %}
                     BlueSkyData.push({
                         x: xVal,
                         y: BlueSkyyVal,
@@ -216,5 +218,7 @@
             document.getElementById("numTotalShares").innerHTML = BlueSkySharesOwned + RedSunSharesOwned + GreenTreeSharesOwned;
         }
     </script>
+
+    {% block code %}Default Code{% endblock %}
 
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

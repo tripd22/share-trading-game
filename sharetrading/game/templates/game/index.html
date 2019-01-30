@@ -16,21 +16,13 @@
 
 <body>
 
-    <div class="sidenav">
-      <a href="#">Home</a>
-      <a href="#">Risk and Return</a>
-      <a href="#">Active and Passive</a>
-      <a href="#">Timing the Market</a>
-      <a href="#">Transaction Costs</a>
-      <a href="#">Diversification</a>
-      <a href="#">Where Can I Learn More?</a>
-    </div>
+    {% include 'game/sidenav.html' %}
 
-
-    {% include 'game/jscode.html' %}
+    {% include 'game/bankjs.html' %}
+    
     <div class="main">
         <div align="center">
-        	<h1>Share Trading</h1>
+        	<h1>{% block title %}Share Trading{% endblock %}</h1>
 
         	<div style="width:800px;">
                 <p>Welcome to the share trading game. Your job is to buy and sell the 3 companies below with the aim of making a profit. The share prices of the 3 companies will evolve over time - try to buy when the price is low, and sell when the price is high!</p>
