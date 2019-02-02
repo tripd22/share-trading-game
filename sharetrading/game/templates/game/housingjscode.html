@@ -1,0 +1,96 @@
+<script>
+        var xVal = 0;
+        var yVal = 100;
+        var updateInterval = 100;
+        var dataLength = 0; // number of dataPoints visible at any point
+        var increment = 0;
+        var duration = 60;
+        var myVar = 0;
+
+        var housingPricesUpturn = [100, 101, 101, 102, 103, 104, 105, 106, 108, 110, 111, 111, 111, 109, 109, 110, 111, 111, 112, 113, 114, 114, 115, 116, 117, 118, 120, 122, 123, 125, 127, 130, 133, 136, 139, 142, 145, 146, 148, 148, 147, 146, 145, 143, 143, 143, 144, 144, 145, 146, 147, 149, 153, 157, 159, 161, 163, 164, 165, 166, 167, 168];
+        var housingPricesDownturn = [100, 101, 102, 104, 106, 108, 109, 110, 110, 109, 109, 109, 108, 107, 106, 104, 102, 101, 100, 99, 98, 96, 94, 92, 91, 91, 91, 92, 92, 92, 92, 93, 93, 94, 95, 96, 97, 98, 98, 99, 100, 101, 102, 104, 106, 108, 109, 110, 111, 110, 110, 110, 111, 111, 113, 114, 116, 117, 118, 118, 118, 118];
+
+        window.onload = function() {
+
+            var HousingPriceUpturnData = []; // data points
+            var HousingPriceDownturnData = []; // data points
+            var EmptyData = []; // empty data set used for chart formatting
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: null
+                },
+                axisY: {
+                    includeZero: true
+                },
+                data: [{
+                    type: "line",
+                    dataPoints: HousingPriceUpturnData,
+                    name: "Housing Scenario 1",
+                    showInLegend: true
+                }, {
+                    type: "line",
+                    dataPoints: HousingPriceDownturnData,
+                    name: "Housing Scenario 2",
+                    showInLegend: true
+                }, {
+                    type: "line",
+                    dataPoints: EmptyData,
+                    name: "EmptyData",
+                    showInLegend: false,
+                    color: "rgba(255,250,250,0)",
+                    gridColor: "rgba(255,250,250,0)" 
+                }]
+            });
+
+
+            EmptyData.push({
+                        x: 5,
+                        y: 150
+                    });
+
+            EmptyData.push({
+                        x: 60,
+                        y: 5
+                    });
+
+            var updateChart = function(count) {
+
+                count = count || 1;
+
+                for (var j = 0; j < count; j++) {
+                    HousingPriceUpturnData.push({
+                        x: xVal,
+                        y: housingPricesUpturn[increment],
+                        markerType: "none"
+                    });
+                    HousingPriceDownturnData.push({
+                        x: xVal,
+                        y: housingPricesDownturn[increment],
+                        markerType: "none"
+                    });
+                    xVal++;
+                }
+
+                chart.render();
+
+                increment++;
+                if (increment == duration) {
+                    myStopFunction(myVar);
+                }
+            };
+
+            updateChart(dataLength); // call updateChart once with the initial dataLength as argument
+            myVar = setInterval(function() {
+                updateChart()
+            }, updateInterval); // repetitively call updateChart with no argument (hence, count will be 1 at the start of the updateChart function
+
+        }
+
+        function myStopFunction(myVar) {
+            clearInterval(myVar);
+        }
+
+        
+    </script>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

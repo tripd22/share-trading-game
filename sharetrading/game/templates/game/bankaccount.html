@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+{% load static %}
+
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="{% static 'game/bootstrap.min.css' %}" />
+
+    <!-- don't think this stylesheet is being used -->
+<link rel="stylesheet" href="{% static 'game/bootstrap-theme.min.css' %}" />
+
+<link rel="stylesheet" type="text/css" href="{% static 'game/style.css' %}" />
+
+</head>
+
+<body>
+
+    {% include 'game/sidenav.html' %}
+
+    {% include 'game/bankjscode.html' %}
+
+    <div class="main">
+        <div align="center">
+        	<h1>Bank Account</h1>
+
+        	<div style="width:800px;">
+                <p>Welcome to the share trading game. Your job is to buy and sell the 3 companies below with the aim of making a profit. The share prices of the 3 companies will evolve over time - try to buy when the price is low, and sell when the price is high!</p>
+                <p>In this game, all companies have a slightly better chance of increasing in value than decreasing - so if you play enough times, you should end up in the green more often than not!</p>
+                <p>Careful - each trade (buy AND sell) costs $1. If you trade too much, you will eat away at your gains!</p>
+            </div>
+        </div>
+
+
+
+        <div class="flex-container">
+            <div id="chartContainer" style="height: 350px; width: 500px;"></div>
+        </div>
+
+
+        </br>
+        <div align="center"><p id="errorMessage">Start buying and selling!</p></div>
+
+        </br>
+
+
+    </div>
+</body>
+
+</html>

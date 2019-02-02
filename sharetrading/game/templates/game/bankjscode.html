@@ -1,0 +1,83 @@
+<script>
+        var xVal = 0;
+        var yVal = 100;
+        var updateInterval = 400;
+        var dataLength = 0; // number of dataPoints visible at any point
+        var increment = 0;
+        var duration = 60;
+        var myVar = 0;
+
+        window.onload = function() {
+
+            var BankAccountData = []; // bank account data points
+            var EmptyData = []; // empty data set used for chart formatting
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: null
+                },
+                axisY: {
+                    includeZero: true
+                },
+                data: [{
+                    type: "line",
+                    dataPoints: BankAccountData,
+                    name: "Bank Account",
+                    showInLegend: true
+                }, {
+                    type: "line",
+                    dataPoints: EmptyData,
+                    name: "EmptyData",
+                    showInLegend: false,
+                    color: "rgba(255,250,250,0)",
+                    gridColor: "rgba(255,250,250,0)" 
+                }]
+            });
+
+
+            EmptyData.push({
+                        x: 5,
+                        y: 150
+                    });
+
+            EmptyData.push({
+                        x: 60,
+                        y: 5
+                    });
+
+            var updateChart = function(count) {
+
+                count = count || 1;
+
+                for (var j = 0; j < count; j++) {
+                    yVal = yVal * 1.001
+                    BankAccountData.push({
+                        x: xVal,
+                        y: yVal,
+                        markerType: "none"
+                    });
+                    xVal++;
+                }
+
+                chart.render();
+
+                increment++;
+                if (increment == duration) {
+                    myStopFunction(myVar);
+                }
+            };
+
+            updateChart(dataLength); // call updateChart once with the initial dataLength as argument
+            myVar = setInterval(function() {
+                updateChart()
+            }, updateInterval); // repetitively call updateChart with no argument (hence, count will be 1 at the start of the updateChart function
+
+        }
+
+        function myStopFunction(myVar) {
+            clearInterval(myVar);
+        }
+
+        
+    </script>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
