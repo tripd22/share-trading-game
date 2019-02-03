@@ -9,8 +9,8 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
-def bankaccount(request):
-	template = loader.get_template('game/bankaccount.html')
+def savingsaccount(request):
+	template = loader.get_template('game/savingsaccount.html')
 	context = {
 		'num': 2,
 	}
@@ -32,6 +32,48 @@ def shares(request):
 
 def riskandreturn(request):
 	template = loader.get_template('game/riskandreturn.html')
+	context = {
+		'num': 2,
+	}
+	return HttpResponse(template.render(context, request))
+
+def activeandpassive(request):
+	template = loader.get_template('game/activeandpassive.html')
+	context = {
+		'num': 2,
+	}
+	return HttpResponse(template.render(context, request))
+
+def timingthemarket(request):
+	template = loader.get_template('game/timingthemarket.html')
+	context = {
+		'num': 2,
+	}
+	return HttpResponse(template.render(context, request))
+
+def transactioncosts(request):
+	template = loader.get_template('game/transactioncosts.html')
+	context = {
+		'num': 2,
+	}
+	return HttpResponse(template.render(context, request))
+
+def diversification(request):
+	template = loader.get_template('game/diversification.html')
+	context = {
+		'num': 2,
+	}
+	return HttpResponse(template.render(context, request))
+
+def otherinvestments(request):
+	template = loader.get_template('game/otherinvestments.html')
+	context = {
+		'num': 2,
+	}
+	return HttpResponse(template.render(context, request))
+
+def learnmore(request):
+	template = loader.get_template('game/learnmore.html')
 	context = {
 		'num': 2,
 	}

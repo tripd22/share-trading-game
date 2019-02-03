@@ -31,17 +31,17 @@
                 data: [{
                     type: "line",
                     dataPoints: BlueSkyData,
-                    name: "BlueSky",
+                    name: "BlueCo",
                     showInLegend: true
                 }, {
                     type: "line",
                     dataPoints: RedSunData,
-                    name: "RedSun",
+                    name: "RedCo",
                     showInLegend: true
                 }, {
                     type: "line",
                     dataPoints: GreenTreeData,
-                    name: "GreenTree",
+                    name: "GreenCo",
                     showInLegend: true
                 }, {
                     type: "line",
@@ -66,20 +66,13 @@
 
             var updateChart = function(count) {
 
-                document.getElementById("overallValue").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal) + (RedSunSharesOwned * RedSunyVal) + (GreenTreeSharesOwned * GreenTreeyVal);
-                document.getElementById("numTotalShares").innerHTML = BlueSkySharesOwned + RedSunSharesOwned + GreenTreeSharesOwned;
-                document.getElementById("currentBVal").innerHTML = BlueSkyyVal;
-                document.getElementById("currentRVal").innerHTML = RedSunyVal;
-                document.getElementById("currentGVal").innerHTML = GreenTreeyVal;
-
                 count = count || 1;
 
                 for (var j = 0; j < count; j++) {
-                    {% block priceEvolution %}
                     BlueSkyyVal = BlueSkyyVal + Math.round(1.05 + Math.random() * (-1 - 1));
                     RedSunyVal = RedSunyVal + Math.round(1.05 + Math.random() * (-1 - 1));
                     GreenTreeyVal = GreenTreeyVal + Math.round(1.05 + Math.random() * (-1 - 1));
-                    {% endblock %}
+                    
                     BlueSkyData.push({
                         x: xVal,
                         y: BlueSkyyVal,
@@ -113,108 +106,10 @@
 
         }
 
-        function buyFunction(companyName) {
-        	if (increment == duration) {
-        		document.getElementById("errorMessage").innerHTML = "The game has finished!";
-        		return;
-        	} else {
-        		document.getElementById("errorMessage").innerHTML = "";
-        	}
-
-            if (companyName == ("BlueSky")) {
-            	if (!(currentCash >= BlueSkyyVal)) {
-            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy BlueSky";
-            		return;
-            	}
-                currentCash = currentCash - BlueSkyyVal;
-                BlueSkySharesOwned++;
-                //document.getElementById("currentBVal").innerHTML = ;
-                document.getElementById("numBShares").innerHTML = BlueSkySharesOwned;
-                document.getElementById("valBShares").innerHTML = BlueSkySharesOwned * BlueSkyyVal;
-            } else if (companyName == ("RedSun")) {
-                if (!(currentCash >= RedSunyVal)) {
-            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy RedSun";
-            		return;
-            	}
-                currentCash = currentCash - RedSunyVal;
-                RedSunSharesOwned++;
-                document.getElementById("numRShares").innerHTML = RedSunSharesOwned;
-                document.getElementById("valRShares").innerHTML = RedSunSharesOwned * RedSunyVal;
-            } else if (companyName == ("GreenTree")) {
-            	if (!(currentCash >= GreenTreeyVal)) {
-            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy GreenTree";
-            		return;
-            	}
-                currentCash = currentCash - GreenTreeyVal;
-                GreenTreeSharesOwned++;
-                document.getElementById("numGShares").innerHTML = GreenTreeSharesOwned;
-                document.getElementById("valGShares").innerHTML = GreenTreeSharesOwned * GreenTreeyVal;
-            }
-
-            // transaction cost adjustment
-            currentCash -= 1;
-            numberOfTrades += 1;
-            document.getElementById("numberOfTransactions").innerHTML = "Number of Transactions: " + numberOfTrades;
-
-            document.getElementById("errorMessage").innerHTML = "Share bought";
-
-            document.getElementById("currentCashDiv").innerHTML = currentCash;
-            document.getElementById("overallValue").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal) + (RedSunSharesOwned * RedSunyVal) + (GreenTreeSharesOwned * GreenTreeyVal);
-            document.getElementById("numTotalShares").innerHTML = BlueSkySharesOwned + RedSunSharesOwned + GreenTreeSharesOwned;
-
-        }
-
         function myStopFunction(myVar) {
             clearInterval(myVar);
         }
 
-        function sellFunction(companyName) {
-        	if (increment == duration) {
-        		document.getElementById("errorMessage").innerHTML = "The game has finished!";
-        		return;
-        	}
-            if (companyName == ("BlueSky")) {
-            	if (BlueSkySharesOwned == 0) {
-            		document.getElementById("errorMessage").innerHTML = "You have no BlueSky shares to sell";
-            		return;
-            	}
-                currentCash = currentCash + BlueSkyyVal;
-                BlueSkySharesOwned--;
-                document.getElementById("numBShares").innerHTML = BlueSkySharesOwned;
-                document.getElementById("valBShares").innerHTML = BlueSkySharesOwned * BlueSkyyVal;
-            } else if (companyName == ("RedSun")) {
-                if (RedSunSharesOwned == 0) {
-            		document.getElementById("errorMessage").innerHTML = "You have no RedSun shares to sell";
-            		return;
-            	}
-                currentCash = currentCash + RedSunyVal;
-                RedSunSharesOwned--;
-                document.getElementById("numRShares").innerHTML = RedSunSharesOwned;
-                document.getElementById("valRShares").innerHTML = RedSunSharesOwned * RedSunyVal;
-            } else if (companyName == ("GreenTree")) {
-            	if (GreenTreeSharesOwned == 0) {
-            		document.getElementById("errorMessage").innerHTML = "You have no GreenTree shares to sell";
-            		return;
-            	}
-                currentCash = currentCash + GreenTreeyVal;
-                GreenTreeSharesOwned--;
-                document.getElementById("numGShares").innerHTML = GreenTreeSharesOwned;
-                document.getElementById("valGShares").innerHTML = GreenTreeSharesOwned * GreenTreeyVal;
-            }
-
-            // transaction cost adjustment
-            currentCash -= 1;
-            numberOfTrades += 1;
-            document.getElementById("numberOfTransactions").innerHTML = "Number of Transactions: " + numberOfTrades;
-
-            document.getElementById("errorMessage").innerHTML = "Share sold";
-
-            document.getElementById("currentCashDiv").innerHTML = currentCash;
-            document.getElementById("overallValue").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal) + (RedSunSharesOwned * RedSunyVal) + (GreenTreeSharesOwned * GreenTreeyVal);
-            document.getElementById("numTotalShares").innerHTML = BlueSkySharesOwned + RedSunSharesOwned + GreenTreeSharesOwned;
-        }
     </script>
-
-    {% block code %}Default Code{% endblock %}
 
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
