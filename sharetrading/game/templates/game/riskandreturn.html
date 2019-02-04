@@ -18,41 +18,71 @@
 
     {% include 'game/sidenav.html' %}
 
-    {% include 'game/sharesjscode.html' %}
+    {% include 'game/riskandreturnjscode.html' %}
 
     <div class="main">
         <div align="center">
         	<h1>Risk and Return</h1>
 
         	<div style="width:800px;" align="left">
-                <p>The share market is a third option available to you for investing. Like property investments, the share market is considered risky - share prices regularly go up and down. The share market is typically even more risky than property.</p>
-                <p>The return from an investment in shares comes from the movements in the price of the shares, and dividends (which are a company's way of giving some of their cash profits back to shareholders).</p>
-                <p>As mentioned above, the share market is even riskier than property. Therefore, on average it returns more than a property investment. Otherwise no investor would be willing to take on the additional risk!</p>
+                <p>So what exactly is risk?</p>
+                <p>Risk refers to the uncertainty of the performance of the investment. It refers to the possibility of losing some (or all) of your money.</p>
+                <p>So how do we measure risk? Well, in finance, we usually measure it by the way an investment's value moves up and down. If the value tends to move up and down quickly, we assume that there is a chance it could move down a few times in a row, which could mean we lose money. Thus, investments that change in value quickly are considered 'risky'.</p>
+                <p>Keep in mind that if an investment is 'volatile', there is also the chance it could move significantly up. High risk isn't necessarily bad - you just need to make sure the potential return you are getting is worth it.</p>
+                <p>Look at the graph below. For any one step, the blue (low risk) line seems to jump up and down the least, whilst the green (high risk) line moves the most. Despite this, notice that the high risk doesn't necessarily beat the low risk at the end, or vice versa. Just that the high risk line is more likely to end up a longer distance from the starting point (either up or down). You may have to replay this animation a few times to see the effect!</p>
+                
             </div>
-        <div class="flex-container">
-            <div id="chartContainer" style="height: 350px; width: 500px;"></div>
-        </div>
+            <div class="flex-container">
+                <div id="chartContainer" style="height: 350px; width: 500px;"></div>
+            </div>
 
-        <div style="width:800px;" align="left">
-            <p>Things to be aware of in stockmarket investments include:
-                <ul>
-                    <li>Some stocks pay large dividends. Other stocks pay no dividends at all. One isn't necessarily better than the other - if a stock doesn't pay dividends, it's stock price is higher by what it would have paid in dividends. Regardless, it is good to know whether a company likes to give its profits back to shareholders, or whether it likes to reinvest the profits back into itself.</li>
-                    <li></li>
-                </ul>
-            </p>
-            <p>Reasons you might consider investing in stocks include:
-                    <ul>
-                      <li>You want high returns, and are willing to bear more risk to get them.</li>
-                      <li></li>
-                    </ul>
-            </p>
-            <p>Reasons you might consider a different investment instead include:
-                <ul>
-                    <li>You may need the money for other things in the near future. Even though you can buy and sell stocks quickly and cheaply, there is always the chance that a stock's price falls quickly. If you are forced to sell just after the stock's price falls, you may regret it.</li>
-                    <li>You are investing for a short term only. Whilst on average stocks return more than savings accounts and property, they are also subject to much greater day-to-day fluctuations in value. A stock you buy could easily lose 5% or more in a week. If you are holding onto the stock for a long time, you minimise the effects of this up-and-down movement, but may not be able to in the short term.</li>
-                </ul>
-            </p>
-        </div>
+            <div style="width:800px;" align="left">
+                <p>As mentioned above, high risk isn't necessarily bad. In fact, if you played the animation above a few times, you probably saw the high risk investment make a nice profit over 5 years. That would be some tasty pintxos! However, we can't guarantee this will happen - that's the whole thing with risk!</p>
+                <p>Instead, we can only make sure that we are properly compensated for taking this risk. Consider the table below.</p>
+                <div align="center">
+                    <table class="table" style="width: 300px;">
+                        <tr>
+                            <th class="tg-0lax" align="center">Investment</th>
+                            <th class="tg-0lax">Risk</th>
+                            <th class="tg-0lax">Estimated Return</th>
+                        </tr>
+                        <tr>
+                            <td class="tg-0lax" align="center">A</td>
+                            <td class="tg-0lax" align="center">Low</td>
+                            <td class="tg-0lax" align="center">3%</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-0lax" align="center">B</td>
+                            <td class="tg-0lax" align="center">High</td>
+                            <td class="tg-0lax" align="center">3%</td>
+                        </tr>
+                    </table>
+                </div>
+                <p>A savvy investor would probably take investment A, because it is lower risk - there is a higher chance they would achieve the estimated return of 3%.</p>
+                <p>Note: both investments might make less (or more) than 3%. However, investment A is more likely to be closer to 3% than investment B.</p>
+                <p>Now consider the investments in the next table.</p>
+                <div align="center">
+                    <table class="table" style="width: 300px;">
+                        <tr>
+                            <th class="tg-0lax" align="center">Investment</th>
+                            <th class="tg-0lax">Risk</th>
+                            <th class="tg-0lax">Estimated Return</th>
+                        </tr>
+                        <tr>
+                            <td class="tg-0lax" align="center">A</td>
+                            <td class="tg-0lax" align="center">Low</td>
+                            <td class="tg-0lax" align="center">3%</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-0lax" align="center">B</td>
+                            <td class="tg-0lax" align="center">High</td>
+                            <td class="tg-0lax" align="center">6%</td>
+                        </tr>
+                    </table>
+                </div>
+                <p>Is investment B now a better choice than A? Well, we can't say for sure. On average, it will probably return more than A, but there is still the chance it will end up returning less than A (and it could lose a lot of money). In this sort of case it is up to the individual investor to decide whether the extra estimated return is worth the additional risk.</p>
+                </div>
+            </div>
         </div>
 
     </div>
