@@ -72,6 +72,13 @@ def otherinvestments(request):
 	}
 	return HttpResponse(template.render(context, request))
 
+def superannuation(request):
+	template = loader.get_template('game/superannuation.html')
+	context = {
+		'num': 2,
+	}
+	return HttpResponse(template.render(context, request))
+
 def learnmore(request):
 	template = loader.get_template('game/learnmore.html')
 	context = {

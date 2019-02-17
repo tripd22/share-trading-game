@@ -13,5 +13,6 @@ urlpatterns = [
         path('transactioncosts', views.transactioncosts, name='transactioncosts'),
         path('diversification', views.diversification, name='diversification'),
         path('otherinvestments', views.otherinvestments, name='otherinvestments'),
+        path('superannuation', views.superannuation, name='superannuation'),
         path('learnmore', views.learnmore, name='learnmore')
 ]
