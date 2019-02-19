@@ -1,61 +1,54 @@
 <!DOCTYPE HTML>
 <html>
+   <head>
+      {% load static %}
+      
+      {% include 'game/css-import.html' %}
 
-<head>
-{% load static %}
+   </head>
+   <body>
 
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="{% static 'game/bootstrap.min.css' %}" />
+      {% include 'game/navbar.html' %}
 
-    <!-- don't think this stylesheet is being used -->
-<link rel="stylesheet" href="{% static 'game/bootstrap-theme.min.css' %}" />
+      <div class="col-xs-12 col-sm-8">
+         <div align="center">
 
-<link rel="stylesheet" type="text/css" href="{% static 'game/style.css' %}" />
-
-</head>
-
-<body>
-
-    {% include 'game/sidenav.html' %}
-
-    {% include 'game/sharesjscode.html' %}
-
-    <div class="main">
-        <div align="center">
-        	<h1>Transaction Costs</h1>
-
-        	<div style="width:800px;" align="left">
-                <p>The share market is a third option available to you for investing. Like property investments, the share market is considered risky - share prices regularly go up and down. The share market is typically even more risky than property.</p>
-                <p>The return from an investment in shares comes from the movements in the price of the shares, and dividends (which are a company's way of giving some of their cash profits back to shareholders).</p>
-                <p>As mentioned above, the share market is even riskier than property. Therefore, on average it returns more than a property investment. Otherwise no investor would be willing to take on the additional risk!</p>
+            <div align="center">
+                <h1 id="pageheading">Transaction Costs</h1>
             </div>
-        <div class="flex-container">
-            <div id="chartContainer" style="height: 350px; width: 500px;"></div>
-        </div>
 
-        <div style="width:800px;" align="left">
-            <p>Things to be aware of in stockmarket investments include:
-                <ul>
-                    <li>Some stocks pay large dividends. Other stocks pay no dividends at all. One isn't necessarily better than the other - if a stock doesn't pay dividends, it's stock price is higher by what it would have paid in dividends. Regardless, it is good to know whether a company likes to give its profits back to shareholders, or whether it likes to reinvest the profits back into itself.</li>
-                    <li></li>
-                </ul>
-            </p>
-            <p>Reasons you might consider investing in stocks include:
-                    <ul>
-                      <li>You want high returns, and are willing to bear more risk to get them.</li>
-                      <li></li>
-                    </ul>
-            </p>
-            <p>Reasons you might consider a different investment instead include:
-                <ul>
-                    <li>You may need the money for other things in the near future. Even though you can buy and sell stocks quickly and cheaply, there is always the chance that a stock's price falls quickly. If you are forced to sell just after the stock's price falls, you may regret it.</li>
-                    <li>You are investing for a short term only. Whilst on average stocks return more than savings accounts and property, they are also subject to much greater day-to-day fluctuations in value. A stock you buy could easily lose 5% or more in a week. If you are holding onto the stock for a long time, you minimise the effects of this up-and-down movement, but may not be able to in the short term.</li>
-                </ul>
-            </p>
-        </div>
-        </div>
+            <div style="max-width:800px;" align="left">
+               <p>The share market is a third option available to you for investing. Like property investments, the share market is considered risky - share prices regularly go up and down. The share market is typically even more risky than property.</p>
+               <p>The return from an investment in shares comes from the movements in the price of the shares, and dividends (which are a company's way of giving some of their cash profits back to shareholders).</p>
+               <p>As mentioned above, the share market is even riskier than property. Therefore, on average it returns more than a property investment. Otherwise no investor would be willing to take on the additional risk!</p>
+            </div>
 
-    </div>
-</body>
+            <div class="flex-container">
+               <div id="chartContainer" style="height: 350px; width: 500px;"></div>
+            </div>
 
+            <div style="max-width:800px;" align="left">
+               <p>Things to be aware of in stockmarket investments include:
+               <ul>
+                  <li>Some stocks pay large dividends. Other stocks pay no dividends at all. One isn't necessarily better than the other - if a stock doesn't pay dividends, it's stock price is higher by what it would have paid in dividends. Regardless, it is good to know whether a company likes to give its profits back to shareholders, or whether it likes to reinvest the profits back into itself.</li>
+                  <li></li>
+               </ul>
+               </p>
+               <p>Reasons you might consider investing in stocks include:
+               <ul>
+                  <li>You want high returns, and are willing to bear more risk to get them.</li>
+                  <li></li>
+               </ul>
+               </p>
+               <p>Reasons you might consider a different investment instead include:
+               <ul>
+                  <li>You may need the money for other things in the near future. Even though you can buy and sell stocks quickly and cheaply, there is always the chance that a stock's price falls quickly. If you are forced to sell just after the stock's price falls, you may regret it.</li>
+                  <li>You are investing for a short term only. Whilst on average stocks return more than savings accounts and property, they are also subject to much greater day-to-day fluctuations in value. A stock you buy could easily lose 5% or more in a week. If you are holding onto the stock for a long time, you minimise the effects of this up-and-down movement, but may not be able to in the short term.</li>
+               </ul>
+               </p>
+            </div>
+         </div>
+      </div>
+      {% include 'game/sharesjscode.html' %}
+   </body>
 </html>

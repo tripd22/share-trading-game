@@ -4,27 +4,21 @@
 <head>
 {% load static %}
 
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="{% static 'game/bootstrap.min.css' %}" />
-
-    <!-- don't think this stylesheet is being used -->
-<link rel="stylesheet" href="{% static 'game/bootstrap-theme.min.css' %}" />
-
-<link rel="stylesheet" type="text/css" href="{% static 'game/style.css' %}" />
+	{% include 'game/css-import.html' %}
 
 </head>
 
 <body>
 
-    {% include 'game/sidenav.html' %}
+    {% include 'game/navbar.html' %}
 
     {% include 'game/housingjscode.html' %}
 
-    <div class="main">
+    <div class="col-xs-12 col-sm-8">
         <div align="center">
-        	<h1>Housing Market</h1>
+        	<h1 id="pageheading">Housing Market</h1>
 
-        	<div style="width:800px;" align="left">
+        	<div style="max-width:800px;" align="left">
                 <p>You can also invest in the housing market. Unlike a bank account, the return on a housing investment is variable - you are not sure how much it will be when you buy. Housing prices can go up and down.</p>
                 <p>The return from a housing investment comes from a combination of rent, and the increase in the value of the property. However, there is always a chance that you can't find a tenant, or that the value of the property falls.</p>
                 <p>On average, the return from a housing investment will be higher than the return from a bank account. If it wasn't, why would you ever invest in property? It would be better to take the safe option of a bank account.</p>
@@ -32,7 +26,7 @@
             <div class="flex-container">
             <div id="chartContainer" style="height: 350px; width: 500px;"></div>
             </div>
-            <div style="width:800px;" align="left">
+            <div style="max-width:800px;" align="left">
                 <p>Things to be aware of in property investments include:
                     <ul>
                         <li>There are usually large taxes on purchasing property (e.g. stamp duty), which means you need more return before you break even.</li>

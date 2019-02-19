@@ -4,32 +4,27 @@
 <head>
 {% load static %}
 
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="{% static 'game/bootstrap.min.css' %}" />
-
-    <!-- don't think this stylesheet is being used -->
-<link rel="stylesheet" href="{% static 'game/bootstrap-theme.min.css' %}" />
-
-<link rel="stylesheet" type="text/css" href="{% static 'game/style.css' %}" />
+	{% include 'game/css-import.html' %}
 
 </head>
 
 <body>
 
-    {% include 'game/sidenav.html' %}
+    {% include 'game/navbar.html' %}
 
     {% include 'game/sharesjscode.html' %}
 
-    <div class="main">
+    <div class="col-xs-12 col-sm-8">
         <div align="center">
-        	<h1>Other Investments</h1>
+        	<h1 id="pageheading">Other Investments</h1>
 
-        	<div style="width:800px;" align="left">
+        	<div style="max-width:800px;" align="left">
                 <p>Bank accounts, property and shares are not the only investments available to you. However, they are the most common for first-time investors to try. Below are some examples of other investment types that you may read about</p>
                 <p>
                     <ul>
                         <li><em>Bonds.</em>You can think of these as a middle-ground between a bank account and shares. When you buy a bond, you are effectively giving money to a company that wants to spend money. However, instead of giving you a share of their profit (like shares), instead the company gives you an agreed-upon fixed rate of return (like a bank account). Bonds typically return more than a bank account would, but less than a share. This is because they are riskier than a bank account (if the company goes broke, you might not get your money back), but not as risky as shares (for a couple of reasons)</li>
                         <li><em>Foreign Currencies.</em> Note that this isn't an 'investment' in the same way that some of the other things metioned are. Bank accounts, property and shares all have an expected return (through interest, rent, dividends). This means that even if their price doesn't increase, you can still make money. Holding foreign currency doesn't do this - you need to hope for a positive price change. You may hear about people who make money on foriegn currencies - these stories are typically about 'traders' (who buy and sell very regularly), rather than 'investors' (who buy and hold).</li>
+                        <li><em>Futures/Forwards/Options. </em>Now we are getting into quite complicated investments. We only mention these here because you might have heard of them at some point. Basically these fall into a category of investments called 'derivatives'. The idea is that some people 
                         
                     </ul>
                 </p>

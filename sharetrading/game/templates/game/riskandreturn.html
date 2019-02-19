@@ -4,27 +4,21 @@
 <head>
 {% load static %}
 
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="{% static 'game/bootstrap.min.css' %}" />
-
-    <!-- don't think this stylesheet is being used -->
-<link rel="stylesheet" href="{% static 'game/bootstrap-theme.min.css' %}" />
-
-<link rel="stylesheet" type="text/css" href="{% static 'game/style.css' %}" />
+	{% include 'game/css-import.html' %}
 
 </head>
 
 <body>
 
-    {% include 'game/sidenav.html' %}
+    {% include 'game/navbar.html' %}
 
     {% include 'game/riskandreturnjscode.html' %}
 
-    <div class="main">
+    <div class="col-xs-12 col-sm-8">
         <div align="center">
-        	<h1>Risk and Return</h1>
+        	<h1 id="pageheading">Risk and Return</h1>
 
-        	<div style="width:800px;" align="left">
+        	<div style="max-width:800px;" align="left">
                 <p>So what exactly is risk?</p>
                 <p>Risk refers to the uncertainty of the performance of the investment. It refers to the possibility of losing some (or all) of your money.</p>
                 <p>So how do we measure risk? Well, in finance, we usually measure it by the way an investment's value moves up and down. If the value tends to move up and down quickly, we assume that there is a chance it could move down a few times in a row, which could mean we lose money. Thus, investments that change in value quickly are considered 'risky'.</p>
@@ -36,7 +30,7 @@
                 <div id="chartContainer" style="height: 350px; width: 500px;"></div>
             </div>
 
-            <div style="width:800px;" align="left">
+            <div style="max-width:800px;" align="left">
                 <p>As mentioned above, high risk isn't necessarily bad. In fact, if you played the animation above a few times, you probably saw the high risk investment make a nice profit over 5 years. That would be some tasty pintxos! However, we can't guarantee this will happen - that's the whole thing with risk!</p>
                 <p>Instead, we can only make sure that we are properly compensated for taking this risk. Consider the table below.</p>
                 <div align="center">

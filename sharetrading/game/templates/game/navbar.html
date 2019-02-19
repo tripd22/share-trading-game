@@ -1,0 +1,50 @@
+{% load staticfiles %}
+
+<div class="navbar navbar-fixed-top navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src={% static "game/InvestingAcademyLogo.png" %} height="35px"></a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'index' %}">Share Trading Game</a></li>
+                <li><a href="{% url 'savingsaccount' %}">Learn</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <!-- /.nav-collapse -->
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /.navbar -->
+
+<div class="container-fluid">
+    <div class="row row-offcanvas row-offcanvas-left">
+        
+        <div class="col-xs-6 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
+            <div class="sidebar-nav">
+                <ul class="nav">
+
+                    <li><a href="{% url 'introduction' %}">Introduction</a></li>
+                    <li><a href="{% url 'whyinvest' %}">Why Invest?</a></li>
+                    <li><a href="{% url 'savingsaccount' %}">Savings Account</a></li>
+                    <li><a href="{% url 'housing' %}">Housing Market</a></li>
+                    <li><a href="{% url 'shares' %}">Share Market</a></li>
+                    <li><a href="{% url 'riskandreturn' %}">Risk and Return</a></li>
+                    <li><a href="{% url 'activeandpassive' %}">Active and Passive</a></li>
+                    <li><a href="{% url 'timingthemarket' %}">Timing the Market</a></li>
+                    <li><a href="{% url 'transactioncosts' %}">Transaction Costs</a></li>
+                    <li><a href="{% url 'diversification' %}">Diversification</a></li>
+                    <li><a href="{% url 'otherinvestments' %}">Other Investments</a></li>
+                    <li><a href="{% url 'superannuation' %}">Superannuation</a></li>
+                    <li><a href="{% url 'learnmore' %}">Where Can I Learn More?</a></li>
+                </ul>
+            </div>
+            <!--/.well -->
+        </div>
+        <!--/span-->

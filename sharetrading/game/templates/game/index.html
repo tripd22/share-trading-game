@@ -4,27 +4,23 @@
 <head>
 {% load static %}
 
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="{% static 'game/bootstrap.min.css' %}" />
-
-    <!-- don't think this stylesheet is being used -->
-<link rel="stylesheet" href="{% static 'game/bootstrap-theme.min.css' %}" />
-
-<link rel="stylesheet" type="text/css" href="{% static 'game/style.css' %}" />
+{% include 'game/css-import.html' %}
 
 </head>
 
 <body>
 
-    {% include 'game/sidenav.html' %}
+    {% include 'game/navbar.html' %}
 
     {% include 'game/gamejscode.html' %}
 
-    <div class="main">
+    <div class="col-xs-12 col-sm-8">
         <div align="center">
-        	<h1>{% block title %}Share Trading{% endblock %}</h1>
+            <div align="center">
+        	   <h1 id="pageheading">{% block title %}Share Trading Game{% endblock %}</h1>
+            </div>
 
-        	<div style="width:800px;">
+        	<div style="max-width:800px;" align="left">
                 <p>Welcome to the share trading game. Your job is to buy and sell the 3 companies below with the aim of making a profit. The share prices of the 3 companies will evolve over time - try to buy when the price is low, and sell when the price is high!</p>
                 <p>Careful - each trade (buy AND sell) costs $1. If you trade too much, you will eat away at your gains!</p>
             </div>

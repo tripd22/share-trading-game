@@ -4,27 +4,21 @@
 <head>
 {% load static %}
 
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="{% static 'game/bootstrap.min.css' %}" />
-
-    <!-- don't think this stylesheet is being used -->
-<link rel="stylesheet" href="{% static 'game/bootstrap-theme.min.css' %}" />
-
-<link rel="stylesheet" type="text/css" href="{% static 'game/style.css' %}" />
+	{% include 'game/css-import.html' %}
 
 </head>
 
 <body>
 
-    {% include 'game/sidenav.html' %}
+    {% include 'game/navbar.html' %}
 
     {% include 'game/activeandpassivejscode.html' %}
 
-    <div class="main">
+    <div class="col-xs-12 col-sm-8">
         <div align="center">
-        	<h1>Active and Passive</h1>
+        	<h1 id="pageheading">Active and Passive</h1>
 
-        	<div style="width:800px;" align="left">
+        	<div style="max-width:800px;" align="left">
                 <p>When you watch the news at night, it often talks about how certain stocks performed that day. However, it will also talk about how the market as a whole did. In Australia, it will probably mention the 'ASX200' - this refers to the 200 most valuable companies on the stock market.</p>
                 <p>If you pay close attention, you may notice that the market never seems to do as well as the best companies do on a given day. On top of this, they never do as poorly as the worst companies do. This is because the market is made up of both the best and worst companies. Therefore, its return is a sort-of 'average'.</p>
                 <p>Look at the animation below.</p>
@@ -33,7 +27,7 @@
             <div id="chartContainer" style="height: 350px; width: 500px;"></div>
         </div>
 
-        <div style="width:800px;" align="left">
+        <div style="max-width:800px;" align="left">
             <p>Notice that the black average line always sits in the middle of the coloured lines, so at the end of the 5 years, the return of the 'market' is the average of the returns of the individual companies. Also notice that it, on the whole, seems less 'bumpy' than the any of the coloured lines (even the low risk line). This illustrates the concept of diversification!</p>
             <p>Diversification is the idea that if you buy a 'portfolio' of multiple different stocks, you can reduce your risk significantly without dropping your expected return by as much. Look at the graph again - the black line is the least bumpy (least risky) of any of the lines, but at the same time returns the average (not the lowest)! Therefore, your risk to return ratio is better!</p>
             <p>This brings us to the concepts of active and passive investing. Active investing is when an investor tries to pick stocks that they think will outperform the market (i.e. pick the coloured lines that beat the black line). They try to do this in many different ways, including researching different business' prospects and choosing the one they think will do the best.</p>

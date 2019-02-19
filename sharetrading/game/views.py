@@ -9,6 +9,18 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+def introduction(request):
+	template = loader.get_template('game/introduction.html')
+	context = {
+		'num': 2,
+	}
+	return HttpResponse(template.render(context, request))
+
+def whyinvest(request):
+	template = loader.get_template('game/whyinvest.html')
+	context = {}
+	return HttpResponse(template.render(context, request))	
+
 def savingsaccount(request):
 	template = loader.get_template('game/savingsaccount.html')
 	context = {

@@ -4,27 +4,21 @@
 <head>
 {% load static %}
 
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="{% static 'game/bootstrap.min.css' %}" />
-
-    <!-- don't think this stylesheet is being used -->
-<link rel="stylesheet" href="{% static 'game/bootstrap-theme.min.css' %}" />
-
-<link rel="stylesheet" type="text/css" href="{% static 'game/style.css' %}" />
+	{% include 'game/css-import.html' %}
 
 </head>
 
 <body>
 
-    {% include 'game/sidenav.html' %}
+    {% include 'game/navbar.html' %}
 
     {% include 'game/sharesjscode.html' %}
 
-    <div class="main">
+    <div class="col-xs-12 col-sm-8">
         <div align="center">
-		<h1>Learn More</h1>
+		<h1 id="pageheading">Learn More</h1>
 
-        	<div style="width:800px;" align="left">
+        	<div style="max-width:800px;" align="left">
                 <p>The share market is a third option available to you for investing. Like property investments, the share market is considered risky - share prices regularly go up and down. The share market is typically even more risky than property.</p>
                 <p>The return from an investment in shares comes from the movements in the price of the shares, and dividends (which are a company's way of giving some of their cash profits back to shareholders).</p>
                 <p>As mentioned above, the share market is even riskier than property. Therefore, on average it returns more than a property investment. Otherwise no investor would be willing to take on the additional risk!</p>
@@ -33,7 +27,7 @@
             <div id="chartContainer" style="height: 350px; width: 500px;"></div>
         </div>
 
-        <div style="width:800px;" align="left">
+        <div style="max-width:800px;" align="left">
             <p>Things to be aware of in stockmarket investments include:
                 <ul>
                     <li>Some stocks pay large dividends. Other stocks pay no dividends at all. One isn't necessarily better than the other - if a stock doesn't pay dividends, it's stock price is higher by what it would have paid in dividends. Regardless, it is good to know whether a company likes to give its profits back to shareholders, or whether it likes to reinvest the profits back into itself.</li>

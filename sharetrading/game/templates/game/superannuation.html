@@ -4,27 +4,21 @@
 <head>
 {% load static %}
 
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="{% static 'game/bootstrap.min.css' %}" />
-
-    <!-- don't think this stylesheet is being used -->
-<link rel="stylesheet" href="{% static 'game/bootstrap-theme.min.css' %}" />
-
-<link rel="stylesheet" type="text/css" href="{% static 'game/style.css' %}" />
+	{% include 'game/css-import.html' %}
 
 </head>
 
 <body>
 
-    {% include 'game/sidenav.html' %}
+    {% include 'game/navbar.html' %}
 
     {% include 'game/sharesjscode.html' %}
 
-    <div class="main">
+    <div class="col-xs-12 col-sm-8">
         <div align="center">
-        	<h1>Superannuation</h1>
+        	<h1 id="pageheading">Superannuation</h1>
 
-        	<div style="width:800px;" align="left">
+        	<div style="max-width:800px;" align="left">
                 <p>So how does superannuation fit into all of this? Well, superannuation is just a scheme created by the Australian Government to get people to save money for their retirement. Effectively, it just means that about 9-10% of any paycheck you receive will 'saved' for you. It will be sent to a superannuation company, who will invest it for you</p>
                 <p>Superannuation companies invest in all of the investments mentioned earlier, and more. If you have a preference, you can usually choose what sort of investments you prefer (for example, you might decide to put all your super into shares to try to get the highest rate of return).</p>
                 <p>While you can make general choices such as this, you typically can't make specific decisions. If you do want to make your own decisions with your super, there is a <em>self-managed super</em> option available. However, the fees involved in this mean that it usually isn't worthwhile unless your super account has a high balance - perhaps $200,000.</p>
