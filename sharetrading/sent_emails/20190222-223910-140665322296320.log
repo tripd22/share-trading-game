@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: asdf@asdf.com
+Date: Fri, 22 Feb 2019 11:39:10 -0000
+Message-ID: <155083555023.15204.18054694267390754542@darcy-XPS-13-9360>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/accounts/reset/Mg/542-73858ab53eb3a74e3a44/
+
+Your username, in case you've forgotten: tripd22
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------
