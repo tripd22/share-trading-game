@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users.apps.UsersConfig',
     'accounts.apps.AccountsConfig',
 ]
 
@@ -128,3 +129,6 @@ LOGOUT_REDIRECT_URL = 'home' # 'home' here redirects to view named home in urls.
 # reset password settings
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+
+# use custom user model, as this allows us to change it later
+AUTH_USER_MODEL = 'users.CustomUser'
