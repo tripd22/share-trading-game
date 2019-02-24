@@ -13,9 +13,21 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="{% url 'index' %}">Share Trading Game</a></li>
-                <li><a href="{% url 'savingsaccount' %}">Learn</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="{% url 'introduction' %}">Learn</a></li>
             </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                {% block content %}
+                {% if user.is_authenticated %}
+                  <li><a href="">Hi {{ user.username }}!</a></li>
+                  <li><a href="{% url 'logout' %}">Sign Out</a></li>
+                {% else %}
+                  <li><a href="{% url 'login' %}">Sign In</a></li>
+                {% endif %}
+                {% endblock %}
+            </ul>
+
+
         </div>
         <!-- /.nav-collapse -->
     </div>
