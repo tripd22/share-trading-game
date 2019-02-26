@@ -1,2 +1,2 @@
 # share-trading-game
-Buy and sell shares to try to make money
+This is a basic Django web application designed to teach financial and investing concepts to students through gamification.
