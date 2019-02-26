@@ -1,11 +1,11 @@
 <script>
         var xVal = 0;
-        var BlueSkyyVal = 30;
-        var BlueSkySharesOwned = 0;
-        var RedSunyVal = 30;
-        var RedSunSharesOwned = 0;
-        var GreenTreeyVal = 30;
-        var GreenTreeSharesOwned = 0;
+        var BlueCoyVal = 30;
+        var BlueCoSharesOwned = 0;
+        var RedCoyVal = 30;
+        var RedCoSharesOwned = 0;
+        var GreenCoyVal = 30;
+        var GreenCoSharesOwned = 0;
         var updateInterval = 400;
         var dataLength = 0; // number of dataPoints visible at any point
         var increment = 0;
@@ -13,13 +13,13 @@
         var myVar = 0;
         var numberOfTrades = 0;
 
-        var currentCash = 500;
+        var currentCash = 1000;
 
         window.onload = function() {
 
-            var BlueSkyData = []; // BlueSky data points
-            var RedSunData = []; // RedSun data points
-            var GreenTreeData = []; // GreenTree data points
+            var BlueCoData = []; // BlueCo data points
+            var RedCoData = []; // RedCo data points
+            var GreenCoData = []; // GreenCo data points
             var EmptyData = []; // empty data set used for chart formatting
             var chart = new CanvasJS.Chart("chartContainer", {
                 title: {
@@ -30,18 +30,18 @@
                 },
                 data: [{
                     type: "line",
-                    dataPoints: BlueSkyData,
-                    name: "BlueSky",
+                    dataPoints: BlueCoData,
+                    name: "BlueCo",
                     showInLegend: true
                 }, {
                     type: "line",
-                    dataPoints: RedSunData,
-                    name: "RedSun",
+                    dataPoints: RedCoData,
+                    name: "RedCo",
                     showInLegend: true
                 }, {
                     type: "line",
-                    dataPoints: GreenTreeData,
-                    name: "GreenTree",
+                    dataPoints: GreenCoData,
+                    name: "GreenCo",
                     showInLegend: true
                 }, {
                     type: "line",
@@ -66,33 +66,45 @@
 
             var updateChart = function(count) {
 
-                document.getElementById("overallValue").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal) + (RedSunSharesOwned * RedSunyVal) + (GreenTreeSharesOwned * GreenTreeyVal);
-                document.getElementById("numTotalShares").innerHTML = BlueSkySharesOwned + RedSunSharesOwned + GreenTreeSharesOwned;
-                document.getElementById("currentBVal").innerHTML = BlueSkyyVal;
-                document.getElementById("currentRVal").innerHTML = RedSunyVal;
-                document.getElementById("currentGVal").innerHTML = GreenTreeyVal;
+                var currentValue = currentCash + (BlueCoSharesOwned * BlueCoyVal) + (RedCoSharesOwned * RedCoyVal) + (GreenCoSharesOwned * GreenCoyVal);
+                document.getElementById("overallValue").innerText = currentValue;
+                if (currentValue >= 1000) {
+                    document.getElementById("overallValue").style.backgroundColor = "#98fb98";    
+                } else {
+                    document.getElementById("overallValue").style.backgroundColor = "#ffab99";
+                }
+                document.getElementById("numTotalShares").innerHTML = BlueCoSharesOwned + RedCoSharesOwned + GreenCoSharesOwned;
+                document.getElementById("currentBVal").innerHTML = BlueCoyVal;
+                document.getElementById("currentRVal").innerHTML = RedCoyVal;
+                document.getElementById("currentGVal").innerHTML = GreenCoyVal;
+
+                document.getElementById("valBShares").innerHTML = BlueCoSharesOwned * BlueCoyVal;
+                document.getElementById("valRShares").innerHTML = RedCoSharesOwned * RedCoyVal;
+                document.getElementById("valGShares").innerHTML = GreenCoSharesOwned * GreenCoyVal;
+
+
 
                 count = count || 1;
 
                 for (var j = 0; j < count; j++) {
                     {% block priceEvolution %}
-                    BlueSkyyVal = BlueSkyyVal + Math.round(1.05 + Math.random() * (-1 - 1));
-                    RedSunyVal = RedSunyVal + Math.round(1.05 + Math.random() * (-1 - 1));
-                    GreenTreeyVal = GreenTreeyVal + Math.round(1.05 + Math.random() * (-1 - 1));
+                    BlueCoyVal = BlueCoyVal + Math.round(1.05 + Math.random() * (-1 - 1));
+                    RedCoyVal = RedCoyVal + Math.round(1.05 + Math.random() * (-1 - 1));
+                    GreenCoyVal = GreenCoyVal + Math.round(1.05 + Math.random() * (-1 - 1));
                     {% endblock %}
-                    BlueSkyData.push({
+                    BlueCoData.push({
                         x: xVal,
-                        y: BlueSkyyVal,
+                        y: BlueCoyVal,
                         markerType: "none"
                     });
-                    RedSunData.push({
+                    RedCoData.push({
                         x: xVal,
-                        y: RedSunyVal,
+                        y: RedCoyVal,
                         markerType: "none"
                     });
-                    GreenTreeData.push({
+                    GreenCoData.push({
                         x: xVal,
-                        y: GreenTreeyVal,
+                        y: GreenCoyVal,
                         markerType: "none"
                     });
                     xVal++;
@@ -121,34 +133,37 @@
         		document.getElementById("errorMessage").innerHTML = "";
         	}
 
-            if (companyName == ("BlueSky")) {
-            	if (!(currentCash >= BlueSkyyVal)) {
-            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy BlueSky";
+            if (companyName == ("BlueCo")) {
+            	if (!(currentCash >= BlueCoyVal)) {
+            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy BlueCo";
             		return;
             	}
-                currentCash = currentCash - BlueSkyyVal;
-                BlueSkySharesOwned++;
+                currentCash = currentCash - BlueCoyVal;
+                BlueCoSharesOwned++;
                 //document.getElementById("currentBVal").innerHTML = ;
-                document.getElementById("numBShares").innerHTML = BlueSkySharesOwned;
-                document.getElementById("valBShares").innerHTML = BlueSkySharesOwned * BlueSkyyVal;
-            } else if (companyName == ("RedSun")) {
-                if (!(currentCash >= RedSunyVal)) {
-            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy RedSun";
+                document.getElementById("numBShares").innerHTML = BlueCoSharesOwned;
+                document.getElementById("BlueCoShares").innerHTML = "BlueCo Shares: " + BlueCoSharesOwned;
+                document.getElementById("valBShares").innerHTML = BlueCoSharesOwned * BlueCoyVal;
+            } else if (companyName == ("RedCo")) {
+                if (!(currentCash >= RedCoyVal)) {
+            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy RedCo";
             		return;
             	}
-                currentCash = currentCash - RedSunyVal;
-                RedSunSharesOwned++;
-                document.getElementById("numRShares").innerHTML = RedSunSharesOwned;
-                document.getElementById("valRShares").innerHTML = RedSunSharesOwned * RedSunyVal;
-            } else if (companyName == ("GreenTree")) {
-            	if (!(currentCash >= GreenTreeyVal)) {
-            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy GreenTree";
+                currentCash = currentCash - RedCoyVal;
+                RedCoSharesOwned++;
+                document.getElementById("numRShares").innerHTML = RedCoSharesOwned;
+                document.getElementById("RedCoShares").innerHTML = "RedCo Shares: " + RedCoSharesOwned;
+                document.getElementById("valRShares").innerHTML = RedCoSharesOwned * RedCoyVal;
+            } else if (companyName == ("GreenCo")) {
+            	if (!(currentCash >= GreenCoyVal)) {
+            		document.getElementById("errorMessage").innerHTML = "You don't have enough cash to buy GreenCo";
             		return;
             	}
-                currentCash = currentCash - GreenTreeyVal;
-                GreenTreeSharesOwned++;
-                document.getElementById("numGShares").innerHTML = GreenTreeSharesOwned;
-                document.getElementById("valGShares").innerHTML = GreenTreeSharesOwned * GreenTreeyVal;
+                currentCash = currentCash - GreenCoyVal;
+                GreenCoSharesOwned++;
+                document.getElementById("numGShares").innerHTML = GreenCoSharesOwned;
+                document.getElementById("GreenCoShares").innerHTML = "GreenCo Shares: " + GreenCoSharesOwned;
+                document.getElementById("valGShares").innerHTML = GreenCoSharesOwned * GreenCoyVal;
             }
 
             // transaction cost adjustment
@@ -159,8 +174,8 @@
             document.getElementById("errorMessage").innerHTML = "Share bought";
 
             document.getElementById("currentCashDiv").innerHTML = currentCash;
-            document.getElementById("overallValue").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal) + (RedSunSharesOwned * RedSunyVal) + (GreenTreeSharesOwned * GreenTreeyVal);
-            document.getElementById("numTotalShares").innerHTML = BlueSkySharesOwned + RedSunSharesOwned + GreenTreeSharesOwned;
+            document.getElementById("overallValue").innerHTML = currentCash + (BlueCoSharesOwned * BlueCoyVal) + (RedCoSharesOwned * RedCoyVal) + (GreenCoSharesOwned * GreenCoyVal);
+            document.getElementById("numTotalShares").innerHTML = BlueCoSharesOwned + RedCoSharesOwned + GreenCoSharesOwned;
 
         }
 
@@ -173,33 +188,36 @@
         		document.getElementById("errorMessage").innerHTML = "The game has finished!";
         		return;
         	}
-            if (companyName == ("BlueSky")) {
-            	if (BlueSkySharesOwned == 0) {
-            		document.getElementById("errorMessage").innerHTML = "You have no BlueSky shares to sell";
+            if (companyName == ("BlueCo")) {
+            	if (BlueCoSharesOwned == 0) {
+            		document.getElementById("errorMessage").innerHTML = "You have no BlueCo shares to sell";
             		return;
             	}
-                currentCash = currentCash + BlueSkyyVal;
-                BlueSkySharesOwned--;
-                document.getElementById("numBShares").innerHTML = BlueSkySharesOwned;
-                document.getElementById("valBShares").innerHTML = BlueSkySharesOwned * BlueSkyyVal;
-            } else if (companyName == ("RedSun")) {
-                if (RedSunSharesOwned == 0) {
-            		document.getElementById("errorMessage").innerHTML = "You have no RedSun shares to sell";
+                currentCash = currentCash + BlueCoyVal;
+                BlueCoSharesOwned--;
+                document.getElementById("numBShares").innerHTML = BlueCoSharesOwned;
+                document.getElementById("BlueCoShares").innerHTML = "BlueCo Shares: " + BlueCoSharesOwned;
+                document.getElementById("valBShares").innerHTML = BlueCoSharesOwned * BlueCoyVal;
+            } else if (companyName == ("RedCo")) {
+                if (RedCoSharesOwned == 0) {
+            		document.getElementById("errorMessage").innerHTML = "You have no RedCo shares to sell";
             		return;
             	}
-                currentCash = currentCash + RedSunyVal;
-                RedSunSharesOwned--;
-                document.getElementById("numRShares").innerHTML = RedSunSharesOwned;
-                document.getElementById("valRShares").innerHTML = RedSunSharesOwned * RedSunyVal;
-            } else if (companyName == ("GreenTree")) {
-            	if (GreenTreeSharesOwned == 0) {
-            		document.getElementById("errorMessage").innerHTML = "You have no GreenTree shares to sell";
+                currentCash = currentCash + RedCoyVal;
+                RedCoSharesOwned--;
+                document.getElementById("numRShares").innerHTML = RedCoSharesOwned;
+                document.getElementById("RedCoShares").innerHTML = "RedCo Shares: " + RedCoSharesOwned;
+                document.getElementById("valRShares").innerHTML = RedCoSharesOwned * RedCoyVal;
+            } else if (companyName == ("GreenCo")) {
+            	if (GreenCoSharesOwned == 0) {
+            		document.getElementById("errorMessage").innerHTML = "You have no GreenCo shares to sell";
             		return;
             	}
-                currentCash = currentCash + GreenTreeyVal;
-                GreenTreeSharesOwned--;
-                document.getElementById("numGShares").innerHTML = GreenTreeSharesOwned;
-                document.getElementById("valGShares").innerHTML = GreenTreeSharesOwned * GreenTreeyVal;
+                currentCash = currentCash + GreenCoyVal;
+                GreenCoSharesOwned--;
+                document.getElementById("numGShares").innerHTML = GreenCoSharesOwned;
+                document.getElementById("GreenCoShares").innerHTML = "GreenCo Shares: " + GreenCoSharesOwned;
+                document.getElementById("valGShares").innerHTML = GreenCoSharesOwned * GreenCoyVal;
             }
 
             // transaction cost adjustment
@@ -210,8 +228,8 @@
             document.getElementById("errorMessage").innerHTML = "Share sold";
 
             document.getElementById("currentCashDiv").innerHTML = currentCash;
-            document.getElementById("overallValue").innerHTML = currentCash + (BlueSkySharesOwned * BlueSkyyVal) + (RedSunSharesOwned * RedSunyVal) + (GreenTreeSharesOwned * GreenTreeyVal);
-            document.getElementById("numTotalShares").innerHTML = BlueSkySharesOwned + RedSunSharesOwned + GreenTreeSharesOwned;
+            document.getElementById("overallValue").innerHTML = currentCash + (BlueCoSharesOwned * BlueCoyVal) + (RedCoSharesOwned * RedCoyVal) + (GreenCoSharesOwned * GreenCoyVal);
+            document.getElementById("numTotalShares").innerHTML = BlueCoSharesOwned + RedCoSharesOwned + GreenCoSharesOwned;
         }
     </script>
 

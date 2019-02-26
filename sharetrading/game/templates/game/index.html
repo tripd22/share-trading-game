@@ -14,36 +14,44 @@
 
     {% include 'game/gamejscode.html' %}
 
-    <div class="col-xs-12 col-sm-8">
+    <div class ="col-xs-12 col-sm-12">
         <div align="center">
-            <div align="center">
-        	   <h1 id="pageheading">{% block title %}Share Trading Game{% endblock %}</h1>
-            </div>
+           <h1 id="pageheading">{% block title %}Share Trading Game{% endblock %}</h1>
+        </div>
+    </div>
 
-        	<div style="max-width:800px;" align="left">
+
+    <div class="col-xs-12 col-sm-12">
+        <div align="center">
+            <div style="max-width:800px;" align="left">
                 <p>Welcome to the share trading game. Your job is to buy and sell the 3 companies below with the aim of making a profit. The share prices of the 3 companies will evolve over time - try to buy when the price is low, and sell when the price is high!</p>
-                <p>Careful - each trade (buy AND sell) costs $1. If you trade too much, you will eat away at your gains!</p>
+                <p>You start with $1000. Careful - each trade (buy AND sell) costs $1. If you trade too much, it will eat away at your gains. Good luck!</p>
+            </br>
             </div>
         </div>
+    </div>
 
+    <div class="col-xs-1 col-sm-1"></div>
 
-
+    <div class="col-xs-6 col-sm-6">
         <div class="flex-container">
             <div id="chartContainer" style="height: 350px; width: 500px;"></div>
             <div style="width: 200px;">
-                <div><p>BlueSky Shares: 0</p></div>
-                <div><button type="button" class="btn btn-primary" onclick="buyFunction('BlueSky')">Buy</button> <button type="button" class="btn btn-primary" onclick="sellFunction('BlueSky')">Sell</button></div>
+                <div><p id="BlueCoShares">BlueCo Shares: 0</p></div>
+                <div><button type="button" class="btn btn-primary" onclick="buyFunction('BlueCo')">Buy</button> <button type="button" class="btn btn-primary" onclick="sellFunction('BlueCo')">Sell</button></div>
                 </br>
-                <div><p>RedSun Shares: 0</p></div>
-                <div><button type="button" class="btn btn-danger" onclick="buyFunction('RedSun')">Buy</button> <button type="button" class="btn btn-danger" onclick="sellFunction('RedSun')">Sell</button></div>
+                <div><p id="RedCoShares">RedCo Shares: 0</p></div>
+                <div><button type="button" class="btn btn-danger" onclick="buyFunction('RedCo')">Buy</button> <button type="button" class="btn btn-danger" onclick="sellFunction('RedCo')">Sell</button></div>
                 </br>
-                <div><p>GreenTree Shares: 0</p></div>
-                <div><button type="button" class="btn btn-success" onclick="buyFunction('GreenTree')">Buy</button> <button type="button" class="btn btn-success" onclick="sellFunction('GreenTree')">Sell</button></div>
+                <div><p id="GreenCoShares">GreenCo Shares: 0</p></div>
+                <div><button type="button" class="btn btn-success" onclick="buyFunction('GreenCo')">Buy</button> <button type="button" class="btn btn-success" onclick="sellFunction('GreenCo')">Sell</button></div>
                 </br>
                 <div><p id="numberOfTransactions">Number of Transactions: 0</p></div>
             </div>
         </div>
+    </div>
 
+    <div class="col-xs-4 col-sm-4">
 
         </br>
         <div align="center"><p id="errorMessage">Start buying and selling!</p></div>
@@ -61,19 +69,19 @@
     	            <th class="tg-0lax">Value of Holding</th>
     	        </tr>
     	        <tr>
-    	            <td class="tg-0lax">BlueSky</td>
+    	            <td class="tg-0lax">BlueCo</td>
     	            <td class="tg-0lax" id="currentBVal" align="center">0</td>
     	            <td class="tg-0lax" id="numBShares" align="center">0</td>
     	            <td class="tg-0lax" id="valBShares" align="center">0</td>
     	        </tr>
     	        <tr>
-    	            <td class="tg-0lax">RedSun</td>
+    	            <td class="tg-0lax">RedCo</td>
     	            <td class="tg-0lax" id="currentRVal" align="center">0</td>
     	            <td class="tg-0lax" id="numRShares" align="center">0</td>
     	            <td class="tg-0lax" id="valRShares" align="center">0</td>
     	        </tr>
     	        <tr>
-    	            <td class="tg-0lax">GreenTree</td>
+    	            <td class="tg-0lax">GreenCo</td>
     	            <td class="tg-0lax" id="currentGVal" align="center">0</td>
     	            <td class="tg-0lax" id="numGShares" align="center">0</td>
     	            <td class="tg-0lax" id="valGShares" align="center">0</td>
@@ -82,7 +90,7 @@
     	            <td class="tg-0lax">Cash</td>
     	            <td class="tg-0lax" align="center">---</td>
     	            <td class="tg-0lax" align="center">---</td>
-    	            <td class="tg-0lax" id="currentCashDiv" align="center">500</td>
+    	            <td class="tg-0lax" id="currentCashDiv" align="center">1000</td>
     	        </tr>
     	        <tr>
     	            <td class="tg-1wig">Total</td>
